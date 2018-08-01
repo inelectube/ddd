@@ -6,31 +6,17 @@ This repo have a Script that can be used to deploy a docker private registry wit
 
 The goal of this script is simplify the installations of a docker private register with an UI.
 
-##HOW DOES IT WORKS?
+## HOW DOES IT WORKS?
 
-You have to execute script.sh and then you need to enter the followed info:
+1. You have to run the script.sh and then you need to enter the followed info:
 
-registry domain: 
-registry port: 
-ui registry port: 
-email: 
-username:
-password:
+registry domain:  
+registry port:  
+ui registry port:  
+email:  
+username:  
+password:  
 
-1. you just need to execute the script.sh with root privileges.
-2. 
-
-
-
-
-that can be used to build, ship and run Docker in different environments.
-I AM NOT RESPONSIBLE HOW YOU USE THIS TOOL.BE LEGAL AND NOT STUPID.
-
-This script will make your life easier, and of course faster.
-
-Its not only for noobs.Its for whoever wants to type less and do actually more.
-
-This script  Docker Registry HTTP API is the protocol to facilitate distribution of images to the docker engine. It interacts with instances of the docker registry, which is a service to manage information about docker images and enable their distribution. The specification covers the operation of version 2 of this API, known as Docker Registry HTTP API V2.
-While the V1 registry protocol is usable, there are several problems with the architecture that have led to this new version. The main driver of this specification is a set of changes to the Docker image format, covered in docker/docker#8093. The new, self-contained image manifest simplifies image definition and improves security. This specification will build on that work, leveraging new properties of the manifest format to improve performance, reduce bandwidth usage and decrease the likelihood of backend corruption.
-
-For relevant details and history leading up to this specification, please see the following issues:
+2. The script download the appropiated certbot-auto and initialize letsencript with the information entered above.
+3. The script creates the certs files ** domain.crt ** and ** domain.key ** for docker registry based on the registry domain entered.
+4. The script create a   
