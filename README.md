@@ -24,8 +24,7 @@ sudo git clone https://github.com/certbot/certbot
 cd certbot    
 sudo ./certbot-auto certonly -n --standalone --agree-tos --email $email -d $domain   
 ```
-3. The script make a copy of the certificates obtain with certbot and rename it to **domain.crt** and **domain.key** to be 
-used for the docker registry.
+3. The script make a copy of the certificates obtain with certbot, rename  **private key** to **domain.crt** and  concatenates **cert.pem** and **chain.pem** in **domain.key**.
 ```
 cd /etc/letsencrypt/live/$domain/   
 cp privkey.pem domain.key  
