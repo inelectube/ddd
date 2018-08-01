@@ -2,7 +2,26 @@
 
 ## Introduction
 
-This repo have a Script that can be used to deploy a docker private registry with an UI interface. It use the official repository [docker registry](https://hub.docker.com/_/registry/) and [Joxit/docker-registry-ui](https://www.google.com)
+This repo have a Script that can be used to deploy a docker private registry with an UI interface. It use the official repository [docker registry](https://hub.docker.com/_/registry/) and the public [Joxit/docker-registry-ui](https://hub.docker.com/r/joxit/docker-registry-ui/).
+
+The goal of this script is simplify the installations of a docker private register with an UI.
+
+##HOW DOES IT WORKS?
+
+You have to execute script.sh and then you need to enter the followed info:
+
+registry domain: 
+registry port: 
+ui registry port: 
+email: 
+username:
+password:
+
+1. you just need to execute the script.sh with root privileges.
+2. 
+
+
+
 
 that can be used to build, ship and run Docker in different environments.
 I AM NOT RESPONSIBLE HOW YOU USE THIS TOOL.BE LEGAL AND NOT STUPID.
