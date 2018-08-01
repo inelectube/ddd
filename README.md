@@ -18,13 +18,13 @@ This script have been tested in ubuntu 16.04+ and before use it you must check t
 'password: ' -> $password
 ```
 
-2. The script download the appropiated certbot-auto and run certbot to obtain the certificates using the registry domain and email entered above.
+2. The script downloads the appropiated certbot-auto and run certbot to obtain the certificates using the registry domain and email entered above.
 ```
 sudo git clone https://github.com/certbot/certbot   
 cd certbot    
 sudo ./certbot-auto certonly -n --standalone --agree-tos --email $email -d $domain   
 ```
-3. The script make a copy of the certificates obtain with certbot, rename  **private key** to **domain.crt** and  concatenates **cert.pem** and **chain.pem** in **domain.key**.
+3. The script makes a copy of the certificates obtain with certbot, rename  **private key** to **domain.crt** and  concatenates **cert.pem** and **chain.pem** in **domain.key**.
 ```
 cd /etc/letsencrypt/live/$domain/   
 cp privkey.pem domain.key  
@@ -32,12 +32,12 @@ cat cert.pem chain.pem > domain.crt
 chmod 777 domain.crt   
 chmod 777 domain.key   
 ```
-4. The script create an username -> password encrypted file for docker registry located in /etc/docker-registry/.htpasswd
+4. The script creates an username -> password encrypted file for docker registry located in /etc/docker-registry/.htpasswd
 
 ```
 docker run --entrypoint htpasswd registry:2 -Bbn $username $password > /etc/docker-registry/.htpasswd
 ```
-5. The script deploy the docker registry with the data obtained above.
+5. The script deploys the docker registry with the data obtained above.
 ```
 docker run -d\
   -p $port:5000 \
@@ -54,7 +54,7 @@ docker run -d\
   --restart always \
   registry:2
 ```
-6. Finally the script deploy the docker registry ui.
+6. Finally the script deploys the docker registry ui.
 ```
 docker run -d -p $uiport:80 \
  -e REGISTRY_URL=https://$domain:$port \
