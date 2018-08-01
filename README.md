@@ -18,7 +18,7 @@ This script have been tested in ubuntu 16.04+ and before use it you must check t
 'password: ' -> $password
 ```
 
-2. The script download the appropiated certbot-auto and run certbot to obtain the certificates with the registry domain and email entered above.
+2. The script download the appropiated certbot-auto and run certbot to obtain the certificates using the registry domain and email entered above.
 ```
 sudo git clone https://github.com/certbot/certbot   
 cd certbot    
