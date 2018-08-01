@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repo have a Script that can be used to deploy a docker private registry with an UI interface. It use the official repository [docker registry](https://hub.docker.com/_/registry/) and the public [Joxit/docker-registry-ui](https://hub.docker.com/r/joxit/docker-registry-ui/). 
+This repo have a Script that can be used to deploy a docker private registry with an UI interface. It use the official repository [docker registry](https://hub.docker.com/_/registry/) and the public repository [Joxit/docker-registry-ui](https://hub.docker.com/r/joxit/docker-registry-ui/). 
 
 This script have been tested in ubuntu 16.04+ and you must check that you have docker installed in your system before use it.
 
