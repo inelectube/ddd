@@ -8,14 +8,14 @@ This script have been tested in ubuntu 16.04+ and you must check that you have d
 
 ## HOW DOES IT WORKS?
 
-1. You have to run the script.sh and then you need to enter the followed info:
+1. You have to run the script.sh and enter the information prompted. Each data will be stored in its corresponding variable.
 ```
-read -p 'registry domain: ' domain
-read -p 'registry email: ' email
-read -p 'registry port: ' port
-read -p 'ui registry port: ' uiport
-read -p 'Username: ' username
-read -sp 'Password: ' password
+'registry domain: ' -> $domain
+'registry email: ' -> $email
+'registry port: ' -> $port
+'ui registry port: ' -> $uiport
+'username: ' -> $username
+'password: ' -> $password
 ```
 
 2. The script download the appropiated certbot-auto and run certbot to obtain the certificates with the registry domain and email entered above.
@@ -34,4 +34,31 @@ chmod 777 domain.crt
 chmod 777 domain.key   
 ```
 4. The script create an username -> password encrypted file for docker registry located in /etc/docker-registry/.htpasswd
-5. The script run the docker o
+
+```
+docker run --entrypoint htpasswd registry:2 -Bbn $username $password > /etc/docker-registry/.htpasswd
+```
+5. The script deploy the docker registry with the data obtained above.
+```
+docker run -d\
+  -p $port:5000 \
+  --name registry \
+  -v /var/lib/registry/data:/var/lib/registry \
+  -v /etc/letsencrypt/live/$domain:/etc/certs \
+  -v /etc/docker-registry:/etc/security \
+  -e REGISTRY_HTTP_TLS_CERTIFICATE=/etc/certs/domain.crt \
+  -e REGISTRY_HTTP_TLS_KEY=/etc/certs/domain.key \
+  -e REGISTRY_AUTH=htpasswd \
+  -e REGISTRY_AUTH_HTPASSWD_PATH=/etc/security/.htpasswd \
+  -e REGISTRY_AUTH_HTPASSWD_REALM="Registry Realm" \
+  -e REGISTRY_STORAGE_DELETE_ENABLED =true \
+  --restart always \
+  registry:2
+```
+6. Finally the script deploy the docker registry ui.
+```
+docker run -d -p $uiport:80 \
+ -e REGISTRY_URL=https://$domain:$port \
+ -e DELETE_IMAGES=true \
+ -e REGISTRY_TITLE="My registry" \
+joxit/docker-registry-ui:static
